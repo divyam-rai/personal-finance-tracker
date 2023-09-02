@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: financedb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: financedb
+  template:
+    metadata:
+      labels:
+        app: financedb
+    spec:
+      containers:
+        - name: financedb
+          image: postgres:15
+          imagePullPolicy: "IfNotPresent"
+          ports:
+           - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: financedb-config
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: financedb-data
+      volumes:
+        - name: financedb-data
+          persistentVolumeClaim:
+            claimName: financedb-claim

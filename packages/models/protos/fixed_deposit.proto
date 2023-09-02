@@ -1,0 +1,13 @@
+syntax = "proto3";
+package protos;
+
+import "google/protobuf/timestamp.proto";
+
+message FixedDeposit {
+    string id = 1;
+    float amount = 2;
+    google.protobuf.Timestamp value_date = 3;
+    int32 period = 4;
+    google.protobuf.Timestamp maturity_date = 5;
+    float maturity_amount = 6;
+}

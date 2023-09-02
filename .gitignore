@@ -1,0 +1,4 @@
+bazel-*
+*.pb.go
+.DS_store
+deploy/database/postgres-config.yaml
